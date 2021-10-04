@@ -23,7 +23,7 @@ namespace HangMan
 
             HangMan hangMan = new HangMan();
 
-            Console.Write("Guess 1 letter at a time: ");
+            Console.WriteLine("Guess 1 letter at a time: ");
 
             char[] solution = word.ToCharArray();
 
@@ -33,7 +33,16 @@ namespace HangMan
 
             while (!judge.guessedAll(judge.getGuesses()) && lives > 0)
             {
-                char input = Console.ReadKey().KeyChar;
+                int[] cursor = new int[] { Console.CursorLeft, Console.CursorTop };
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    Console.SetCursorPosition(cursor[0], cursor[1]);
+                    continue;
+                }
+
+                char input = key.KeyChar;
                 bool correct = false;
 
                 for (int i = 0; i < solution.Length; i++)
