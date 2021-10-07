@@ -4,23 +4,14 @@ namespace HangMan
     public class Game
     {
         public String word;
-        public int turns = 0;
-        public bool won = false;
+        public int turns;
+
+        private int lives;
 
         Judge judge;
 
-        public Game()
+        public bool play()
         {
-            int lives = 7;
-
-            Console.Write("Enter a word: ");
-
-            Console.ForegroundColor = ConsoleColor.Black;
-            word = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White;
-
-            Console.Clear();
-
             HangMan hangMan = new HangMan();
 
             Console.WriteLine("Guess 1 letter at a time: ");
@@ -47,13 +38,11 @@ namespace HangMan
 
                 for (int i = 0; i < solution.Length; i++)
                 {
-                    if (input == solution[i])
+                    // if guessed letter is in the solution and the guess is unique
+                    if (input == solution[i] && judge.getGuesses()[i] == new char())
                     {
-                        if ((int)judge.getGuesses()[i] == 0)
-                        {
-                            judge.insertGuess(i, input);
-                            correct = true;
-                        }
+                        judge.insertGuess(i, input);
+                        correct = true;
                     }
                 }
 
@@ -71,17 +60,24 @@ namespace HangMan
                 this.turns++;
             }
 
-            won = lives > 0;
-
-            if (won)
+            if (lives > 0)
             {
                 hangMan.gameWon();
+                return true;
             }
             else
             {
                 hangMan.gameDied();
                 judge.displaySolution();
+                return false;
             }
+        }
+
+        public Game(String word)
+        {
+            this.word = word;
+            this.turns = 0;
+            this.lives = 7;
         }
     }
 }

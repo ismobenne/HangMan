@@ -9,12 +9,29 @@ namespace HangMan
             GameHistory bestGame = null;
 
             while(true) {
-                Game game = new Game();
+                // ask the user for a word
+                String word;
+
+                Console.Write("Enter a word: ");
+
+                Console.ForegroundColor = ConsoleColor.Black;
+                word = Console.ReadLine();
+                word = word.ToLower();
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.Clear();
+
+                Game game = new Game(word);
+
+                // play the game and store wether the game was won
+                bool won = game.play();
+
                 String[] messages = new string[2];
 
                 if (bestGame == null)
                 {
-                    if (game.won)
+                    // if it was the first game and the player won
+                    if (won)
                     {
                         bestGame = new GameHistory(game);
 
@@ -29,7 +46,8 @@ namespace HangMan
                 {
                     bool betterGame = game.turns < bestGame.turns || (game.turns == bestGame.turns && game.word.Length > bestGame.word.Length);
 
-                    if (game.won && betterGame)
+                    // if the player won and the game was better than the current best game
+                    if (won && betterGame)
                     {
                         bestGame = new GameHistory(game);
                     }
@@ -49,6 +67,7 @@ namespace HangMan
 
                 Console.SetCursorPosition(0, 3);
 
+                // wait for the player to play again
                 do
                 {
                     ConsoleKeyInfo keyPress = Console.ReadKey();
