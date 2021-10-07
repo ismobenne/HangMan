@@ -35,13 +35,13 @@ namespace HangMan
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public void drawStand()
+        private void drawStand()
         {
             Console.SetCursorPosition(pencilTip[0], pencilTip[1]);
             Console.Write("------");
         }
 
-        public void drawPole()
+        private void drawPole()
         {
             Console.SetCursorPosition(pencilTip[0] += 2, pencilTip[1] -= 1);
 
@@ -52,14 +52,14 @@ namespace HangMan
             }
         }
 
-        public void drawRoof()
+        private void drawRoof()
         {
             Console.SetCursorPosition(pencilTip[0], pencilTip[1]);
             Console.Write("------------");
             Console.SetCursorPosition(pencilTip[0] += ("------------".Length - 1), pencilTip[1]);
         }
 
-        public void drawRope()
+        private void drawRope()
         {
             for (int i = 0; i < 2; i++)
             {
@@ -69,13 +69,13 @@ namespace HangMan
             }
         }
 
-        public void drawHead()
+        private void drawHead()
         {
             Console.SetCursorPosition(pencilTip[0] -= 1, pencilTip[1] += 1);
             Console.Write("<<)");
         }
 
-        public void drawBody()
+        private void drawBody()
         {
             Console.SetCursorPosition(pencilTip[0] += 1, pencilTip[1] += 1);
             Console.Write("#");
@@ -87,7 +87,7 @@ namespace HangMan
             Console.Write("#");
         }
 
-        public void drawLegs()
+        private void drawLegs()
         {
 
             Console.SetCursorPosition(pencilTip[0] -= 1, pencilTip[1] += 1);
@@ -99,7 +99,7 @@ namespace HangMan
 
         public void drawNext()
         {
-            int[] position = { Console.CursorLeft, Console.CursorTop };
+            int[] cursor = { Console.CursorLeft, Console.CursorTop };
 
             switch (i)
             {
@@ -132,7 +132,7 @@ namespace HangMan
                     break;
             }
 
-            Console.SetCursorPosition(position[0], position[1]);
+            Console.SetCursorPosition(cursor[0], cursor[1]);
 
             i++;
         }
