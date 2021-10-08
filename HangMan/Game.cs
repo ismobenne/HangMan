@@ -76,6 +76,7 @@ namespace HangMan
         public Game(String word)
         {
             this.word = word;
+
             this.turns = 0;
             this.lives = 7;
         }

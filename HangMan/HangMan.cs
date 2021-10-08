@@ -4,23 +4,18 @@ namespace HangMan
 {
     public class HangMan
     {
-        static int[] rootPos = new int[] { Console.WindowWidth / 2, Console.WindowHeight / 2 };
-        static int[] textPos = new int[] { Console.WindowWidth / 2, (Console.WindowHeight / 2) + 20 };
+        static int[] pencilTip = new int[] { Console.WindowWidth/2 - 18/2, Console.WindowHeight/2 };
+        static int[] announcementPos = new int[] { Console.WindowWidth/2, Console.WindowHeight / 2 + 20 };
 
-        int[] pencilTip;
         int i = 0;
-
-        public HangMan()
-        {
-            this.pencilTip = rootPos;
-        }
             
         public void gameWon()
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.SetCursorPosition(textPos[0], textPos[1]);
-            Console.WriteLine("You guessed the word!");
+            String text = "You guessed the word!";
+            Console.SetCursorPosition(announcementPos[0] - text.Length/2, announcementPos[1]);
+            Console.WriteLine(text);
 
             Console.ForegroundColor = ConsoleColor.White;
         }
@@ -29,8 +24,9 @@ namespace HangMan
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            Console.SetCursorPosition(textPos[0], textPos[1]);
-            Console.WriteLine("You died!");
+            String text = "You died!";
+            Console.SetCursorPosition(announcementPos[0] - text.Length/2, announcementPos[1]);
+            Console.WriteLine(text);
 
             Console.ForegroundColor = ConsoleColor.White;
         }

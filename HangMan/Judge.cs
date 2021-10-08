@@ -9,7 +9,7 @@ namespace HangMan
         static int[] guessedPos = new int[] { Console.WindowWidth / 2, (Console.WindowHeight / 2) + 15 };
         static int[] solutionPos = new int[] { guessedPos[0], guessedPos[1] + 1 };
 
-        private static char[] guessedString(char[] guesses)
+        private static char[] hangmanString(char[] guesses)
         {
             char[] result = new char[guesses.Length];
 
@@ -56,10 +56,10 @@ namespace HangMan
         public void displayGuessed()
         {
             int[] oldPosition = { Console.CursorLeft, Console.CursorTop };
-            string text = String.Join(' ', guessedString(guesses));
+            string text = String.Join(' ', hangmanString(guesses));
 
 
-            Console.SetCursorPosition(guessedPos[0], guessedPos[1]);
+            Console.SetCursorPosition(guessedPos[0] - text.Length/2, guessedPos[1]);
             Console.Write(text);
             Console.SetCursorPosition(oldPosition[0], oldPosition[1]);
         }
@@ -67,10 +67,10 @@ namespace HangMan
         public void displaySolution()
         {
             int[] oldPosition = { Console.CursorLeft, Console.CursorTop };
-            string text = String.Join(' ', guessedString(solution));
+            string text = String.Join(' ', hangmanString(solution));
 
 
-            Console.SetCursorPosition(solutionPos[0], solutionPos[1]);
+            Console.SetCursorPosition(solutionPos[0] - text.Length/2, solutionPos[1]);
             Console.Write(text);
             Console.SetCursorPosition(oldPosition[0], oldPosition[1]);
         }

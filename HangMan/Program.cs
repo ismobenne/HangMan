@@ -4,6 +4,7 @@ namespace HangMan
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             GameHistory bestGame = null;
@@ -23,24 +24,24 @@ namespace HangMan
 
                 Game game = new Game(word);
 
-                // play the game and store wether the game was won
+                // play the game and store whether the game was won
                 bool won = game.play();
 
-                String[] messages = new string[2];
+                String[] text = new string[2];
 
                 if (bestGame == null)
                 {
-                    // if it was the first game and the player won
+                    // if the best game does not exist yet and the player won
                     if (won)
                     {
                         bestGame = new GameHistory(game);
 
-                        messages[0] = "Best game yet:";
-                        messages[1] = bestGame.word + " in " + bestGame.turns + " turns.";
+                        text[0] = "Best game yet:";
+                        text[1] = bestGame.word + " in " + bestGame.turns + " turns.";
 
-                        Console.SetCursorPosition(0, Console.WindowHeight - (messages.Length - 1) - 1);
-                        Console.WriteLine(messages[0]);
-                        Console.Write(messages[1]);
+                        Console.SetCursorPosition(0, Console.WindowHeight - (text.Length - 1) - 1);
+                        Console.WriteLine(text[0]);
+                        Console.Write(text[1]);
                     }
                 } else
                 {
@@ -52,20 +53,18 @@ namespace HangMan
                         bestGame = new GameHistory(game);
                     }
 
-                    messages[0] = "Best game yet:";
-                    messages[1] = bestGame.word + " in " + bestGame.turns + " turns.";
+                    text[0] = "Best game yet:";
+                    text[1] = bestGame.word + " in " + bestGame.turns + " turns.";
 
-                    Console.SetCursorPosition(0, Console.WindowHeight - (messages.Length - 1) - 1);
-                    Console.WriteLine(messages[0]);
-                    Console.Write(messages[1]);
+                    Console.SetCursorPosition(0, Console.WindowHeight - (text.Length - 1) - 1);
+                    Console.WriteLine(text[0]);
+                    Console.Write(text[1]);
                 }
 
-                messages[0] = "Press ENTER to play again...";
+                text[0] = "Press ENTER to play again...";
 
-                Console.SetCursorPosition(Console.WindowWidth - messages[0].Length, (Console.WindowHeight - 1) - 1);
-                Console.Write(messages[0]);
-
-                Console.SetCursorPosition(0, 3);
+                Console.SetCursorPosition(Console.WindowWidth - text[0].Length, (Console.WindowHeight - 1) - 1);
+                Console.Write(text[0]);
 
                 // wait for the player to play again
                 do
