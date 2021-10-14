@@ -95,7 +95,7 @@ namespace HangMan
 
         public void drawNext()
         {
-            int[] cursor = { Console.CursorLeft, Console.CursorTop };
+            int[] oldPosition = { Console.CursorLeft, Console.CursorTop };
 
             switch (i)
             {
@@ -128,7 +128,7 @@ namespace HangMan
                     break;
             }
 
-            Console.SetCursorPosition(cursor[0], cursor[1]);
+            Console.SetCursorPosition(oldPosition[0], oldPosition[1]);
 
             i++;
         }

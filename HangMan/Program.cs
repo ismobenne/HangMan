@@ -10,6 +10,8 @@ namespace HangMan
             GameHistory bestGame = null;
 
             while(true) {
+                Console.Clear();
+
                 // ask the user for a word
                 String word;
 
@@ -19,6 +21,11 @@ namespace HangMan
                 word = Console.ReadLine();
                 word = word.ToLower();
                 Console.ForegroundColor = ConsoleColor.White;
+
+                if (word == String.Empty)
+                {
+                    continue;
+                }
 
                 Console.Clear();
 
@@ -73,7 +80,6 @@ namespace HangMan
 
                     if (keyPress.Key == ConsoleKey.Enter)
                     {
-                        Console.Clear();
                         break;
                     }
                 } while (true);
